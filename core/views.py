@@ -1,9 +1,27 @@
 from django.shortcuts import render, redirect
-from .models import Transaction, Category
-from .forms import TransactionForm, CategoryForm
+from .models import Transaction, Category, Budget
+from .forms import TransactionForm, CategoryForm, BudgetForm
 
 def index(request):
     return render(request, 'index.html')
+
+
+def budget_create(request):
+    if request.method == 'POST':
+        form = BudgetForm(request.POST)
+        if form.is_valid():
+            budget = form.save(commit=False)
+            budget.user = request.user
+            budget.save()
+            return redirect('budget_list')
+    else:
+        form = BudgetForm()
+    return render(request, 'budget_create.html', {'form': form})
+
+def budget_list(request):
+    budgets = Budget.objects.filter(user=request.user)
+    return render(request, 'budget_list.html', {'budgets': budgets})
+
 # def transaction_create(request):
 #     if request.method == 'POST':
 #         transaction_form = TransactionForm(request.POST)

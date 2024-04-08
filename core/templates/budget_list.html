@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Budget List</title>
+</head>
+<body>
+    <h1>Budget List</h1>
+    <ul>
+        {% for budget in budgets %}
+            <li>{{ budget }}</li>
+        {% empty %}
+            <li>No budgets found</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
