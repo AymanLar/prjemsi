@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Expense List</title>
+</head>
+{% include 'header.html' %}
+<body>
+    <h2>Expense List</h2>
+    <ul>
+        {% for expense in expenses %}
+        <li>{{ expense.category }} - {{ expense.name }} - {{ expense.date }} - {{ expense.amount }} <a href="{% url 'delete_expense' expense.pk %}">Delete</a></li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'add_expense' %}">Add Expense</a>
+</body>
+</html>

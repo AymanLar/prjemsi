@@ -1,16 +1,17 @@
+<!-- update_budget.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add Budget</title>
+    <title>Update Budget</title>
 </head>
+{% include 'header.html' %}
 <body>
-    <h1>Add Budget</h1>
+    <h2>Update Budget</h2>
     <form method="post">
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit">Save</button>
+        <button type="submit">Update Budget</button>
     </form>
 </body>
 </html>

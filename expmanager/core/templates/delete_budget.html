@@ -1,0 +1,15 @@
+<!-- delete_budget.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Delete Budget</title>
+</head>
+<body>
+    <h2>Are you sure you want to delete your budget?</h2>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit">Delete Budget</button>
+    </form>
+</body>
+</html>

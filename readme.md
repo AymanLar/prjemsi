@@ -1,8 +1,4 @@
-- todo 
- - visualise expeces
- - add/edit budjet 
- - generate reports
-
-``
-python manage.py createsuperuser
-``
+- export all data in form of csv with addition of stuff like most this i lost money in and such insights ( dépenses mensuelles moyennes)
+- [*] fix the app.html form so it can get data from the form and drop it on the database
+- [*] style the other pages like login , register ....
+- [done but in static html]add categories alimentation, logement, transport, divertissement, etc.

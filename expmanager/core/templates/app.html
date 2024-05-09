@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Expense Tracker App</title>
+    <link href="https://fonts.googleapis.com/css?family=Titillium+Web&display=swap" 
+        rel="stylesheet">
+        {% load static %}
+    <link rel="stylesheet" href="{% static 'core/style.css' %}">
+</head>
+<body>
+    <header>
+        <center>
+            <h1 class="title">Expense Tracker App</h1>
+        </center>
+    <header>
+
+    <section class="content">
+        <h3 class="secondTitle">Add a new item: </h3>
+        <div class="form">
+            <!-- <form id="expForm" method="post" action="{% url 'add_expense' %}">
+                    {% csrf_token %}
+                <div class="formLine left">
+                    <span for="type">Category:</span>
+                    <select id="type">
+                        <option value="chooseOne">Choose one...</option>
+                        <option value="Card">Card</option>
+                        <option value="Cash">Cash</option>
+                        <option value="Cryptocoin">Cryptocoin</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+                <div class="formLine right">
+                    <span for="name">Name:</span>
+                    <input type="text" id="name">
+                </div>
+
+                <div class="formLine left">
+                    <span for="date">Date:</span>
+                    <input type="date" id="date">
+                </div>
+                <div class="formLine right">
+                    <span for="amount">Amount:</span>
+                    <input type="text" id="amount">
+                </div>
+                <button type="submit" class="buttonSave">Add a new expense</button>
+            </form> -->
+                <form method="post" action="{% url 'add_expense' %}">
+        {% csrf_token %}
+        <div class="formLine left">
+            <label for="category">Category:</label>
+            <select id="category" name="category">
+                <option value="Housing">🏠 Housing</option>
+                <option value="Transportation">🚗 Transportation</option>
+                <option value="Food">🍽️ Food</option>
+                <option value="Utilities">💡 Utilities</option>
+                <option value="Clothing">👕 Clothing</option>
+                <option value="Healthcare">⚕️ Healthcare</option>
+                <option value="Insurance">🛡️ Insurance</option>
+                <option value="Education">🎓 Education</option>
+                <option value="Savings">💰 Savings</option>
+                <option value="Entertainment">🎬 Entertainment</option>
+                <option value="Other">Other</option>
+            </select>
+        </div>
+        <div class="formLine right">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name">
+        </div>
+
+        <div class="formLine left">
+            <label for="date">Date:</label>
+            <input type="date" id="date" name="date">
+        </div>
+        <div class="formLine right">
+            <label for="amount">Amount:</label>
+            <input type="text" id="amount" name="amount">
+        </div>
+        <button type="submit">Add Expense</button>
+    </form>
+    <a href="{% url 'download_records' %}" class="btn btn-primary">Download Records</a>
+        </div>
+    </section>
+    <section class="content">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Category</th>
+                    <th>Name</th>
+                    <th>Date</th>
+                    <th>Amount</th>
+                    <th>Options</th>
+                </tr>
+            </thead>
+            <tbody id="expenseTable">
+
+            {% for expense in expenses %}
+            <tr>
+                <td>{{ expense.category }}</td>
+                <td>{{ expense.name }}</td>
+                <td>{{ expense.date }}</td>
+                <td>{{ expense.amount }}</td>
+                <td>
+                    <a href="{% url 'delete_expense' expense.pk %}">Delete</a>
+                    <a href="{% url 'edit_expense' expense.pk %}">Update</a>
+                </td>
+            </tr>
+            {% endfor %}
+
+            </tbody>
+        </table>
+    </section>
+    <script src="app.js"></script>
+</body>
+</html>

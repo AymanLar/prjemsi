@@ -1,0 +1,17 @@
+<!-- set_budget.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Set Budget</title>
+</head>
+{% include 'header.html' %}
+<body>
+    <h2>Set Budget</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Set Budget</button>
+    </form>
+</body>
+</html>
