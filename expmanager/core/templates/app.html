@@ -98,10 +98,10 @@
 
             {% for expense in expenses %}
             <tr>
-                <td>{{ expense.category }}</td>
-                <td>{{ expense.name }}</td>
-                <td>{{ expense.date }}</td>
-                <td>{{ expense.amount }}</td>
+                <td><center> {{ expense.category }} </center></td>
+                <td><center> {{ expense.name }} </center></td>
+                <td><center> {{ expense.date }} </center></td>
+                <td><center> {{ expense.amount }} </center></td>
                 <td>
                     <a href="{% url 'delete_expense' expense.pk %}">Delete</a>
                     <a href="{% url 'edit_expense' expense.pk %}">Update</a>

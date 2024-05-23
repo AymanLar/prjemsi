@@ -115,7 +115,10 @@ def download_records(request):
 
     writer = csv.writer(response)
     writer.writerow(['User', 'Category', 'Name', 'Date', 'Amount'])
-    expenses = Expense.objects.all()
+    total_expenses = 0
+
+    #expenses = Expense.objects.all()
+    expenses = Expense.objects.filter(user=request.user)
     for expense in expenses:
         writer.writerow([
             expense.user.username,
@@ -124,5 +127,21 @@ def download_records(request):
             expense.date.strftime('%Y-%m-%d'),
             expense.amount
         ])
+        total_expenses += expense.amount
+    
+
+    budget = Budget.objects.first()
+    if budget:
+        budget_amount = budget.amount
+    else:
+        budget_amount = 0
+    
+    # Calculate the difference between the budget and total expenses
+    difference = budget_amount - total_expenses
+    
+    # Write total expenses, budget, and difference to the CSV file
+    writer.writerow(['Total Expenses:', '', '', '', total_expenses])
+    writer.writerow(['Budget:', '', '', '', budget_amount])
+    writer.writerow(['Difference:', '', '', '', difference])
 
     return response
