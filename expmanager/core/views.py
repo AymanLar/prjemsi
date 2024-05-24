@@ -130,7 +130,7 @@ def download_records(request):
         total_expenses += expense.amount
     
 
-    budget = Budget.objects.first()
+    budget = Budget.objects.filter(user=request.user)
     if budget:
         budget_amount = budget.amount
     else:
@@ -145,3 +145,16 @@ def download_records(request):
     writer.writerow(['Difference:', '', '', '', difference])
 
     return response
+
+
+def search_view(request):
+    query = request.GET.get('query')
+    if query:
+        fields_to_search = ['name', 'category', 'amount', 'date']
+        query_filter = models.Q()
+        for field in fields_to_search:
+            query_filter |= models.Q(**{f'{field}__icontains': query})
+        results = Expense.objects.filter(query_filter, user=request.user)
+    else:
+        results = Expense.objects.filter(user=request.user)  # Return all expenses if no query
+    return render(request, 'search_results.html', {'results': results})

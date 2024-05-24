@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Expense Tracker App</title>
+    <link href="https://fonts.googleapis.com/css?family=Titillium+Web&display=swap" 
+        rel="stylesheet">
+        {% load static %}
+    <link rel="stylesheet" href="{% static 'core/style.css' %}">
+</head>
+<body>
+    <header>
+        <center>
+            <h1 class="title">Expense Tracker App</h1>
+        </center>
+    <header>
+
+    <section class="content">
+        <h3 class="secondTitle">Results: </h3>
+{% if results %}
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Category</th>
+                    <th>Name</th>
+                    <th>Date</th>
+                    <th>Amount</th>
+                    <th>Options</th>
+                </tr>
+            </thead>
+            <tbody id="expenseTable">
+
+        {% for expense in results %}
+            <tr>
+                <td><center> {{ expense.category }} </center></td>
+                <td><center> {{ expense.name }} </center></td>
+                <td><center> {{ expense.date }} </center></td>
+                <td><center> {{ expense.amount }} </center></td>
+                <td>
+                    <a href="{% url 'delete_expense' expense.pk %}">Delete</a>
+                    <a href="{% url 'edit_expense' expense.pk %}">Update</a>
+                </td>
+            </tr>
+        {% endfor %}
+</tbody>
+        </table>
+{% else %}
+    <p>No results found.</p>
+{% endif %}
+</body>

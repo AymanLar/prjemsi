@@ -19,4 +19,5 @@ urlpatterns = [
     path('delete_budget/', views.delete_budget, name='delete_budget'),
 
     path('download/', views.download_records, name='download_records'),
+    path('search/', views.search_view, name='search'),
 ]
